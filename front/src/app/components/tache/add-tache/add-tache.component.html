@@ -1,0 +1,58 @@
+
+  <div class="col-md-12">
+    <div class="card card-container">
+      
+      <form
+        *ngIf="!isSuccessful"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate
+      >
+        <div class="form-group">
+          <input
+            type="text"
+            placeholder="Nomprojet"
+            class="form-control"
+            name="nomprojet"
+            [(ngModel)]="form.nomprojet"
+            required
+            minlength="3"
+            maxlength="20"
+            #nomprojet="ngModel"
+          />
+          <div class="alert-danger" *ngIf="nomprojet.errors && f.submitted">
+            <div *ngIf="nomprojet.errors.required" style="background-color:white">nomprojet is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            type="date"
+            class="form-control"
+            name="tache_estimer"
+            [(ngModel)]="form.tache_estimer"
+            required
+            minlength="3"
+            maxlength="20"
+            #tache_estimer="ngModel"
+          />
+          <div class="alert-danger" *ngIf="tache_estimer.errors && f.submitted">
+            <div *ngIf="tache_estimer.errors.required" style="background-color:white">tache estimer is required</div>
+          </div>
+        </div>
+        
+        
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Envoyer Tache</button>
+        </div>
+  
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+          Tache failed!<br />{{ errorMessage }}
+        </div>
+      </form>
+  
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Your registration is successful!
+      </div>
+    </div>
+  </div>

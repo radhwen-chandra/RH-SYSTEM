@@ -1,0 +1,57 @@
+
+  <div class="col-md-12">
+    <div class="card card-container">
+      
+      <form
+        *ngIf="!isSuccessful"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate
+      >
+        <div class="form-group">
+          <input
+            type="date"
+            class="form-control"
+            name="dateDebut"
+            [(ngModel)]="form.dateDebut"
+            required
+            minlength="3"
+            maxlength="20"
+            #dateDebut="ngModel"
+          />
+          <div class="alert-danger" *ngIf="dateDebut.errors && f.submitted">
+            <div *ngIf="dateDebut.errors.required" style="background-color:white">dateDebut is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            type="date"
+            class="form-control"
+            name="dateFin"
+            [(ngModel)]="form.dateFin"
+            required
+            minlength="3"
+            maxlength="20"
+            #dateFin="ngModel"
+          />
+          <div class="alert-danger" *ngIf="dateFin.errors && f.submitted">
+            <div *ngIf="dateFin.errors.required" style="background-color:white">dateFin is required</div>
+          </div>
+        </div>
+        
+        
+        <div class="form-group">
+          <button class="btn btn-primary btn-block">Modifier</button>
+        </div>
+  
+        <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+          Conge failed!<br />{{ errorMessage }}
+        </div>
+      </form>
+  
+      <div class="alert alert-success" *ngIf="isSuccessful">
+        Your modification is successful!
+      </div>
+    </div>
+  </div>
